@@ -26,7 +26,7 @@ In `shortpoet-dev`: **Manage Account** → **Account API Tokens** → **Create T
 Resources: all zones in `shortpoet-dev`. Then store it:
 
 ```bash
-PASSWORD_STORE_DIR=~/source/orgs/github/shortpoet-pass/tier-1 pass insert cloudflare/dev/terraform
+PASSWORD_STORE_DIR=~/source/orgs/github/shortpoet-pass/tier-1 pass insert Cloud/cloudflare/dev/terraform
 ```
 
 ## 3. Plan, then apply
@@ -36,7 +36,7 @@ PASSWORD_STORE_DIR=~/source/orgs/github/shortpoet-pass/tier-1 pass insert cloudf
   set -eo pipefail
   cd ~/source/orgs/github/shortpoet-cloud/tf-cloudflare/accounts/dev
   aws sts get-caller-identity --profile terraform-admin >/dev/null 2>&1 || aws sso login --profile terraform-admin --use-device-code
-  CLOUDFLARE_API_TOKEN="$(PASSWORD_STORE_DIR=~/source/orgs/github/shortpoet-pass/tier-1 pass show cloudflare/dev/terraform)"
+  CLOUDFLARE_API_TOKEN="$(PASSWORD_STORE_DIR=~/source/orgs/github/shortpoet-pass/tier-1 pass show Cloud/cloudflare/dev/terraform)"
   export CLOUDFLARE_API_TOKEN
   terraform init -input=false
   terraform plan -input=false -out="$XDG_RUNTIME_DIR/cloudflare-dev.tfplan"
@@ -49,7 +49,7 @@ Expect `1 to import, 6 to add, 0 to destroy`: the account, the zone and five zon
 (
   set -eo pipefail
   cd ~/source/orgs/github/shortpoet-cloud/tf-cloudflare/accounts/dev
-  CLOUDFLARE_API_TOKEN="$(PASSWORD_STORE_DIR=~/source/orgs/github/shortpoet-pass/tier-1 pass show cloudflare/dev/terraform)"
+  CLOUDFLARE_API_TOKEN="$(PASSWORD_STORE_DIR=~/source/orgs/github/shortpoet-pass/tier-1 pass show Cloud/cloudflare/dev/terraform)"
   export CLOUDFLARE_API_TOKEN
   terraform apply "$XDG_RUNTIME_DIR/cloudflare-dev.tfplan"
   rm "$XDG_RUNTIME_DIR/cloudflare-dev.tfplan"
@@ -71,7 +71,7 @@ The main account's settings for the domain are lost, and the registration is tra
 (
   set -eo pipefail
   cd ~/source/orgs/github/shortpoet-cloud/tf-cloudflare/accounts/dev
-  CLOUDFLARE_API_TOKEN="$(PASSWORD_STORE_DIR=~/source/orgs/github/shortpoet-pass/tier-1 pass show cloudflare/dev/terraform)"
+  CLOUDFLARE_API_TOKEN="$(PASSWORD_STORE_DIR=~/source/orgs/github/shortpoet-pass/tier-1 pass show Cloud/cloudflare/dev/terraform)"
   export CLOUDFLARE_API_TOKEN
   terraform apply -refresh-only -auto-approve -input=false >/dev/null
   terraform output zone_status
