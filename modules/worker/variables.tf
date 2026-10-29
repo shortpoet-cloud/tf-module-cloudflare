@@ -1,3 +1,12 @@
+variable "zone_name" {
+  description = "The name of the zone to create the record in."
+  type        = string
+}
+
+variable "cname_name" {
+  description = "The name of the record."
+  type        = string
+}
 
 variable "worker_script_name" {
   description = "The name of the worker script."

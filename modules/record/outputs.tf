@@ -1,3 +1,4 @@
 output "cloudflare_record_cname" {
-  value = cloudflare_record.cname
+  description = "The CNAME record pointing the subdomain at its target."
+  value       = cloudflare_record.cname
 }

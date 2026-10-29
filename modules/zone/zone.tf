@@ -8,5 +8,6 @@ resource "cloudflare_zone" "shortpoet" {
 }
 
 output "accounts" {
-  value = data.cloudflare_accounts.main
+  description = "The Cloudflare accounts matching the account name, which own the zone."
+  value       = data.cloudflare_accounts.main
 }

@@ -25,6 +25,9 @@ resource "cloudflare_worker_script" "main_script" {
   name       = var.worker_script_name
   content    = local.worker_script_content
   module     = true
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "cloudflare_worker_route" "catch_all_route" {
