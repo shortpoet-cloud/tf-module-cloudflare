@@ -1,6 +1,6 @@
 # tf-module-cloudflare
 
-Terraform modules for Cloudflare. This repository holds modules only: no root here is planned or applied, and it keeps no state. Each account's root lives in `shortpoet-cloud/tf-cloudflare-accounts` and pins these modules by tag.
+Terraform modules for Cloudflare. This repository holds modules only: no root here is planned or applied, and it keeps no state. Callers pin these modules by tag.
 
 | Module | Provider | What it manages |
 |---|---|---|
